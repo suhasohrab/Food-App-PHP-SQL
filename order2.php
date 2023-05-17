@@ -5,16 +5,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"]) && $_POST["s
     $price = $_POST["price"];
     $image = $_POST["image"];
 	$order_date = date("Y-m-d h:i:sa");
-	$status = mysqli_real_escape_string($conn, "Ordered");
     // Retrieve and validate the user details from the form fields
     $quantity = isset($_POST["quantity"]) ? $_POST["quantity"] : "";
+    $name = isset($_POST["name"]) ? $_POST["name"] : "";
     $email = isset($_POST["email"]) ? $_POST["email"] : "";
-    $contact = isset($_POST["mobile_number"]) ? $_POST["mobile_number"] : "";
-    $address = isset($_POST["delivery_address"]) ? $_POST["delivery_address"] : "";
-    $instructions = isset($_POST["delivery_instructions"]) ? $_POST["delivery_instructions"] : "";
-    $landmark = isset($_POST["nearest_landmark"]) ? $_POST["nearest_landmark"] : "";
+    $contact = isset($_POST["contact"]) ? $_POST["contact"] : "";
+    $address = isset($_POST["address"]) ? $_POST["address"] : "";
+    $instructions = isset($_POST["instructions"]) ? $_POST["instructions"] : "";
+    $landmark = isset($_POST["landmark"]) ? $_POST["landmark"] : "";
     $payment = isset($_POST["payment"]) ? $_POST["payment"] : "";
-    $altno = isset($_POST["alternate_number"]) ? $_POST["alternate_number"] : "";
+    $altno = isset($_POST["altno"]) ? $_POST["altno"] : "";
 
     // Store the order details in the orders database
     // Perform your database operations here to store the order details
@@ -34,11 +34,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"]) && $_POST["s
     }
 
     // Prepare and bind the SQL statement
-    $stmt = $conn->prepare("INSERT INTO food_order (title, price, qty, customer_contact, customer_address, instructions, landmark, payment, altno) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO food_order (title, price, customer_name, customer_contact, customer_email, customer_address, instructions, landmark, payment, altno) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     if (!$stmt) {
         die("Error: " . $conn->error);
     }
-    $stmt->bind_param("ssissssss", $title, $price, $quantity, $contact, $address, $instructions, $landmark, $payment, $altno);
+    $stmt->bind_param("ssssssssss", $title, $price, $name, $contact, $email, $address, $instructions, $landmark, $payment, $altno);
     
     // Execute the statement
     $stmt->execute();

@@ -111,54 +111,56 @@
   height: 53.52px; width:2620px;
   position: relative;
  ">
-    <div class="div-indolj-menu-wrapper" style="position:relative; top: 20px;
+    <div class="div-indolj-menu-wrapper" style="position:relative; left:70px;top: 20px;
       background: rgba(255, 255, 255, 0.00);
   overflow: hidden;">
       <div class="ul-nav">
-        <div class="share-the-goodness-upto-30-off2" style="color:black">
-          Share The Goodness Upto 30% OFF
+        <div class="mighty-deals-upto-30-off2" style="position: relative;
+  left: 400.47px;">
+          <a href="#mighty-deals">Mighty Deals upto 30% off</a>
         </div>
 
-        <div class="mighty-deals-upto-30-off2">Mighty Deals upto 30% off</div>
+        <div class="gourmet-fries2">
+          <a href="#gourmet-fries">Value Burgers</a>
+        </div>
 
-        <div class="kiddy-meals2" style="overflow-y:hidden">KIDDY</div>
+        <div class="premium-burgers2">
+          <a href="#premium-burgers">Premium Burgers</a>
+        </div>
 
-        <div class="gourmet-fries2">Gourmet Fries</div>
+        <div class="stack-burgers2">
+          <a href="#stack-burgers">Stack Burgers</a>
+        </div>
 
-        <div class="premium-burgers2">Premium Burgers</div>
+        <div class="extreme-burgers2">
+          <a href="#extreme-burgers">Extreme Burgers</a>
+        </div>
 
-        <div class="stack-burgers2">Stack Burgers</div>
-
-        <div class="extreme-burgers2">Extreme Burgers</div>
-
-        <div class="classic-burgers2">Classic Burgers</div>
-
-        <div class="healthy-kick2">Healthy Kick</div>
-
-        <div class="appetizers2">Appetizers</div>
+        <div class="classic-burgers2">
+          <a href="#classic-burgers">Classic Burgers</a>
+        </div>
 
         <div class="li-nav-item">
           <div class="a-nav-link">
-            <div class="value-burgers2">Value Burgers</div>
+            <div class="value-burgers2" style="position: relative; left: -10.47px;">
+              <a href="#share" >Share the Goodness</a>
+            </div>
           </div>
         </div>
 
-        <div class="mocktails2">Mocktails</div>
 
-        <div class="beverages2">Beverages</div>
       </div>
-
     </div>
   </div>
-</div>
-<?php
-if (isset($_SESSION['add_to_cart'])) {
-  echo $_SESSION['add_to_cart'];
-  unset($_SESSION['add_to_cart']);
-} ?>
-<script>
-  var counter = 0; // Initialize the counter variable
-</script>
+  <?php
+  if (isset($_SESSION['add_to_cart'])) {
+    echo $_SESSION['add_to_cart'];
+    unset($_SESSION['add_to_cart']);
+  } ?>
+  <script>
+    var counter = 0; // Initialize the counter variable
+  </script>
+
 </div>
 
 <div class="div-m-0" style="top:1250px;height:100px;">
@@ -185,7 +187,7 @@ if (isset($_SESSION['add_to_cart'])) {
         </div>
       </section>
       <div class="div-406856" style="position:relative; left:450px; top:-30px;">
-        <div class="summer-feast">Summer Feast</div>
+        <div class="summer-feast" id="mighty-deals">Mighty Deals</div>
 
         <div class="div-category-item-wrapper">
           <div class="div-item">
@@ -224,34 +226,79 @@ if (isset($_SESSION['add_to_cart'])) {
                 </div>
               </div>
               <script>
-         function addToCart(title, price, image) {
-  // Create a product object
-  var product = {
-    title: title,
-    price: price,
-    image: image,
-    quantity: 1
-  };
+                function incrementCounter() {
+                  counter++; // Increment the counter
 
-  // Add the product to the cart array
-  cart.push(product);
+                  // Update the counter display
+                  var counterElement = document.getElementById('counter');
+                  if (counterElement) {
+                    counterElement.textContent = counter;
+                  }
+                }
+                // Array to store cart items
+                var cart = [];
 
-  // Update the cart section HTML
-  updateCart();
+                // Function to add a product to the cart
+                function addToCart(title, price, image) {
+                  // Create a product object
+                  var product = {
+                    title: title,
+                    price: price,
+                    image: image,
+                    quantity: 1
+                  };
 
-  // Add a checkout button to the cart section
-  var checkoutButton = document.createElement("button");
-  checkoutButton.innerText = "Checkout";
-  checkoutButton.addEventListener("click", function () {
-    // Redirect to the checkout page with the product details
-    window.location.href = "checkout.php?title=" + encodeURIComponent(title) + "&price=" + encodeURIComponent(price) + "&image=" + encodeURIComponent(image);
-  });
+                  // Add the product to the cart array
+                  cart.push(product);
 
-  // Append the checkout button to the cart section
-  document.getElementById("cart-section").appendChild(checkoutButton);
-}</script>
+                  // Update the cart section HTML
+                  updateCart();
+                }
 
-              <button class="button-btn-xs" onclick="addToCart('<?php echo $title1; ?>', '<?php echo $price1; ?>', '<?php echo $image1; ?>');incrementCounter();">
+                // Function to update the cart section HTML
+                function updateCart() {
+                  var cartSection = document.getElementById("cart-section");
+                  cartSection.innerHTML = "";
+
+                  // Loop through the cart array and create HTML for each item
+                  for (var i = 0; i < cart.length; i++) {
+                    var item = cart[i];
+                    var itemHTML = `
+        <img src="${item.image}" alt="${item.title}" style="width:200px;margin-top:60px;">
+        <div class="item-details">
+          <div class="item-title">${item.title}</div>
+          <div class="item-price">${item.price}</div>
+          <div class="item-quantity">
+            <button class="minus-button" onclick="decreaseQuantity(${i})">-</button>
+            <span>${item.quantity}</span>
+            <button class="plus-button" onclick="increaseQuantity(${i})">+</button>
+          </div>
+        </div>
+      `;
+                    cartSection.innerHTML += itemHTML;
+                  }
+
+                  // Add checkout and clear cart buttons
+                  var buttonsHTML = `
+      <button class="clear-cart-button" onclick="clearCart()">Clear Cart</button>
+      <button class="checkout-button" onclick="goToCheckout()">Checkout</button>
+    `;
+                  cartSection.innerHTML += buttonsHTML;
+                }
+
+                // Function to pass the cart data to the checkout page
+                function goToCheckout() {
+  // Convert the cart array to a JSON string
+  var cartData = JSON.stringify(cart);
+
+  // Set the cart data as a URL parameter
+  window.location.href = 'checkout.php?cart=' + encodeURIComponent(cartData);
+}
+
+              </script>
+
+              <button class="button-btn-xs"
+                onclick="addToCart('<?php echo $title1; ?>', '<?php echo $price1; ?>', '<?php echo $image1; ?>');incrementCounter();">
                 <svg class="frame4" width="13" height="16" viewBox="0 0 13 16" fill="none"
                   xmlns="http://www.w3.org/2000/svg">
                   <path
@@ -260,9 +307,6 @@ if (isset($_SESSION['add_to_cart'])) {
                 </svg>
             </div>
             </button>
-
-
-
 
             <img class="_1683556647-summer-20-deal-1-jpg" src="<?php echo $image1 ?>" />
           </div>
@@ -305,8 +349,9 @@ if (isset($_SESSION['add_to_cart'])) {
                   <div class="rs-959">Rs. 959</div>
                 </div>
               </div>
-           
-              <button class="button-btn-xs" onclick="addToCart('<?php echo $title2; ?>', '<?php echo $price2; ?>', '<?php echo $image2; ?>');incrementCounter();">
+
+              <button class="button-btn-xs"
+                onclick="addToCart('<?php echo $title2; ?>', '<?php echo $price2; ?>', '<?php echo $image2; ?>');incrementCounter();">
 
                 <svg class="frame4" width="13" height="16" viewBox="0 0 13 16" fill="none"
                   xmlns="http://www.w3.org/2000/svg">
@@ -357,86 +402,9 @@ if (isset($_SESSION['add_to_cart'])) {
                   <div class="rs-998">Rs. 998</div>
                 </div>
               </div>
-              <script>
-                function incrementCounter() {
-                  counter++; // Increment the counter
 
-                  // Update the counter display
-                  var counterElement = document.getElementById('counter');
-                  if (counterElement) {
-                    counterElement.textContent = counter;
-                  }
-                }
-
-                function addToCart3() {
-                  // Retrieve the product details from PHP variables
-                  var title = "<?php echo $title3; ?>";
-                  var price = "<?php echo $price3; ?>";
-                  var image = "<?php echo $image3; ?>";
-
-                  // Create a product object
-                  var product = {
-                    title: title,
-                    price: price,
-                    image: image,
-                    quantity: 1
-                  };
-
-                  // Add the product to the cart array
-                  cart.push(product);
-
-                  // Update the cart section HTML
-                  updateCart();
-
-                  // Add a checkout button to the cart section
-                  var checkoutButton = document.createElement("button");
-                  checkoutButton.innerText = "Checkout";
-                  checkoutButton.addEventListener("click", function () {
-                    // Redirect to the checkout page with the product details
-                    window.location.href = "checkout.php?title=" + encodeURIComponent(title) + "&price=" + encodeURIComponent(price) + "&image=" + encodeURIComponent(image);
-                  });
-
-                  // Append the checkout button to the cart section
-                  document.getElementById("cart-section").appendChild(checkoutButton);
-                }
-
-                // Array to store cart items
-                var cart = [];
-
-                // Function to update the cart section HTML
-                function updateCart() {
-                  var cartSection = document.getElementById("cart-section");
-                  cartSection.innerHTML = "";
-
-                  // Loop through the cart array and create HTML for each item
-                  for (var i = 0; i < cart.length; i++) {
-                    var item = cart[i];
-                    var itemHTML = `
-        
-          <img src="${item.image}" alt="${item.title}" style="width:200px;margin-top:60px;">
-          <div class="item-details">
-            <div class="item-title">${item.title}</div>
-            <div class="item-price">${item.price}</div>
-            <div class="item-quantity">
-              <button class="minus-button" onclick="decreaseQuantity(${i})">-</button>
-              <span>${item.quantity}</span>
-              <button class="plus-button" onclick="increaseQuantity(${i})">+</button>
-            </div>
-          </div>
-        </div>
-      `;
-                    cartSection.innerHTML += itemHTML;
-                  }
-
-                  // Add checkout and clear cart buttons
-                  var buttonsHTML = `
-      <button class="clear-cart-button" onclick="clearCart()">Clear Cart</button>
-    `;
-                  cartSection.innerHTML += buttonsHTML;
-
-
-                }</script>
-              <button class="button-btn-xs" onclick="addToCart('<?php echo $title3; ?>', '<?php echo $price3; ?>', '<?php echo $image3; ?>');incrementCounter();">
+              <button class="button-btn-xs"
+                onclick="addToCart('<?php echo $title3; ?>', '<?php echo $price3; ?>', '<?php echo $image3; ?>');incrementCounter();">
                 <svg class="frame4" width="13" height="16" viewBox="0 0 13 16" fill="none"
                   xmlns="http://www.w3.org/2000/svg">
                   <path
@@ -453,7 +421,7 @@ if (isset($_SESSION['add_to_cart'])) {
       </div>
 
       <div class="div-406857" style="position:relative; left:450px; top:-30px;">
-        <div class="wrap-tastic-offer">Wrap Tastic Offer</div>
+        <div class="wrap-tastic-offer">Value Burgers</div>
 
         <div class="div-item4">
           <div class="div-p-04">
@@ -492,7 +460,8 @@ if (isset($_SESSION['add_to_cart'])) {
               </div>
             </div>
 
-            <button class="button-btn-xs"onclick="addToCart('<?php echo $title4; ?>', '<?php echo $price4; ?>', '<?php echo $image4; ?>');incrementCounter();">
+            <button class="button-btn-xs"
+              onclick="addToCart('<?php echo $title4; ?>', '<?php echo $price4; ?>', '<?php echo $image4; ?>');incrementCounter();">
               <svg class="frame4" width="13" height="16" viewBox="0 0 13 16" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -507,7 +476,7 @@ if (isset($_SESSION['add_to_cart'])) {
       </div>
 
       <div class="div-405577" style="position:relative; left:450px; top:-30px;">
-        <div class="grab-the-wraps">Grab The Wraps</div>
+        <div class="grab-the-wraps" id="premium-burgers">Premium Burgers</div>
 
         <div class="div-category-item-wrapper2">
           <div class="div-item5">
@@ -553,7 +522,8 @@ if (isset($_SESSION['add_to_cart'])) {
               </div>
 
 
-              <button class="button-btn-xs" onclick="addToCart('<?php echo $title5; ?>', '<?php echo $price5; ?>', '<?php echo $image5; ?>');incrementCounter();">
+              <button class="button-btn-xs"
+                onclick="addToCart('<?php echo $title5; ?>', '<?php echo $price5; ?>', '<?php echo $image5; ?>');incrementCounter();">
                 <svg class="frame4" width="13" height="16" viewBox="0 0 13 16" fill="none"
                   xmlns="http://www.w3.org/2000/svg">
                   <path
@@ -608,7 +578,8 @@ if (isset($_SESSION['add_to_cart'])) {
                 </div>
               </div>
 
-              <button class="button-btn-xs" onclick="addToCart('<?php echo $title6; ?>', '<?php echo $price6; ?>', '<?php echo $image6; ?>');incrementCounter();">
+              <button class="button-btn-xs"
+                onclick="addToCart('<?php echo $title6; ?>', '<?php echo $price6; ?>', '<?php echo $image6; ?>');incrementCounter();">
                 <svg class="frame4" width="13" height="16" viewBox="0 0 13 16" fill="none"
                   xmlns="http://www.w3.org/2000/svg">
                   <path
@@ -662,7 +633,8 @@ if (isset($_SESSION['add_to_cart'])) {
                 </div>
               </div>
 
-              <button class="button-btn-xs" onclick="addToCart('<?php echo $title7; ?>', '<?php echo $price7; ?>', '<?php echo $image7; ?>');incrementCounter();">
+              <button class="button-btn-xs"
+                onclick="addToCart('<?php echo $title7; ?>', '<?php echo $price7; ?>', '<?php echo $image7; ?>');incrementCounter();">
                 <svg class="frame4" width="13" height="16" viewBox="0 0 13 16" fill="none"
                   xmlns="http://www.w3.org/2000/svg">
                   <path
@@ -680,8 +652,8 @@ if (isset($_SESSION['add_to_cart'])) {
 
 
       <div class="div-401293" style="position:relative; left:450px; top:-30px;">
-        <div class="share-the-goodness-upto-30-off">
-          Share The Goodness Upto 30% OFF
+        <div class="share-the-goodness-upto-30-off" id="stack-burgers">
+          Stack Burgers
         </div>
 
         <div class="div-category-item-wrapper4">
@@ -724,7 +696,8 @@ if (isset($_SESSION['add_to_cart'])) {
               </div>
 
 
-              <button class="button-btn-xs" onclick="addToCart('<?php echo $title8; ?>', '<?php echo $price8; ?>', '<?php echo $image8; ?>');incrementCounter();">
+              <button class="button-btn-xs"
+                onclick="addToCart('<?php echo $title8; ?>', '<?php echo $price8; ?>', '<?php echo $image8; ?>');incrementCounter();">
                 <svg class="frame4" width="13" height="16" viewBox="0 0 13 16" fill="none"
                   xmlns="http://www.w3.org/2000/svg">
                   <path
@@ -774,7 +747,8 @@ if (isset($_SESSION['add_to_cart'])) {
                 </div>
               </div>
 
-              <button class="button-btn-xs" onclick="addToCart('<?php echo $title13; ?>', '<?php echo $price13; ?>', '<?php echo $image13; ?>');incrementCounter();">
+              <button class="button-btn-xs"
+                onclick="addToCart('<?php echo $title13; ?>', '<?php echo $price13; ?>', '<?php echo $image13; ?>');incrementCounter();">
                 <svg class="frame4" width="13" height="16" viewBox="0 0 13 16" fill="none"
                   xmlns="http://www.w3.org/2000/svg">
                   <path
@@ -790,7 +764,7 @@ if (isset($_SESSION['add_to_cart'])) {
       </div>
 
       <div class="div-1573" style="position:relative; left:450px; top:-30px;">
-        <div class="mighty-deals-upto-30-off">Mighty Deals upto 30% off</div>
+        <div class="mighty-deals-upto-30-off" id="extreme-burgers">Extreme Burgers</div>
 
         <div class="div-category-item-wrapper5">
           <div class="div-item14">
@@ -830,7 +804,8 @@ if (isset($_SESSION['add_to_cart'])) {
                 </div>
               </div>
 
-              <button class="button-btn-xs" onclick="addToCart('<?php echo $title15; ?>', '<?php echo $price15; ?>', '<?php echo $image15; ?>');incrementCounter();">
+              <button class="button-btn-xs"
+                onclick="addToCart('<?php echo $title15; ?>', '<?php echo $price15; ?>', '<?php echo $image15; ?>');incrementCounter();">
                 <svg class="frame4" width="13" height="16" viewBox="0 0 13 16" fill="none"
                   xmlns="http://www.w3.org/2000/svg">
                   <path
@@ -879,7 +854,8 @@ if (isset($_SESSION['add_to_cart'])) {
                 </div>
               </div>
 
-              <button class="button-btn-xs" onclick="addToCart('<?php echo $title16; ?>', '<?php echo $price16; ?>', '<?php echo $image16; ?>');incrementCounter();">
+              <button class="button-btn-xs"
+                onclick="addToCart('<?php echo $title16; ?>', '<?php echo $price16; ?>', '<?php echo $image16; ?>');incrementCounter();">
                 <svg class="frame4" width="13" height="16" viewBox="0 0 13 16" fill="none"
                   xmlns="http://www.w3.org/2000/svg">
                   <path
@@ -929,7 +905,8 @@ if (isset($_SESSION['add_to_cart'])) {
                 </div>
               </div>
 
-              <button class="button-btn-xs" onclick="addToCart('<?php echo $title16; ?>', '<?php echo $price16; ?>', '<?php echo $image16; ?>');incrementCounter();">
+              <button class="button-btn-xs"
+                onclick="addToCart('<?php echo $title16; ?>', '<?php echo $price16; ?>', '<?php echo $image16; ?>');incrementCounter();">
                 <svg class="frame4" width="13" height="16" viewBox="0 0 13 16" fill="none"
                   xmlns="http://www.w3.org/2000/svg">
                   <path
@@ -980,7 +957,8 @@ if (isset($_SESSION['add_to_cart'])) {
                 </div>
               </div>
 
-              <button class="button-btn-xs" onclick="addToCart('<?php echo $title17; ?>', '<?php echo $price17; ?>', '<?php echo $image17; ?>');incrementCounter();">
+              <button class="button-btn-xs"
+                onclick="addToCart('<?php echo $title17; ?>', '<?php echo $price17; ?>', '<?php echo $image17; ?>');incrementCounter();">
                 <svg class="frame4" width="13" height="16" viewBox="0 0 13 16" fill="none"
                   xmlns="http://www.w3.org/2000/svg">
                   <path
@@ -1030,7 +1008,8 @@ if (isset($_SESSION['add_to_cart'])) {
                 </div>
               </div>
 
-              <button class="button-btn-xs" onclick="addToCart('<?php echo $title18; ?>', '<?php echo $price18; ?>', '<?php echo $image18; ?>');incrementCounter();">
+              <button class="button-btn-xs"
+                onclick="addToCart('<?php echo $title18; ?>', '<?php echo $price18; ?>', '<?php echo $image18; ?>');incrementCounter();">
                 <svg class="frame4" width="13" height="16" viewBox="0 0 13 16" fill="none"
                   xmlns="http://www.w3.org/2000/svg">
                   <path
@@ -1082,7 +1061,8 @@ if (isset($_SESSION['add_to_cart'])) {
               </div>
 
 
-              <button class="button-btn-xs" onclick="addToCart('<?php echo $title19; ?>', '<?php echo $price19; ?>', '<?php echo $image19; ?>');incrementCounter();">
+              <button class="button-btn-xs"
+                onclick="addToCart('<?php echo $title19; ?>', '<?php echo $price19; ?>', '<?php echo $image19; ?>');incrementCounter();">
                 <svg class="frame4" width="13" height="16" viewBox="0 0 13 16" fill="none"
                   xmlns="http://www.w3.org/2000/svg">
                   <path
@@ -1099,7 +1079,7 @@ if (isset($_SESSION['add_to_cart'])) {
       </div>
 
       <div class="div-402539" style="position:relative; left:450px; top:-30px;">
-        <div class="kiddy-meals">KIDDY MEALS</div>
+        <div class="kiddy-meals" id="classic-burgers">Classic Burgers</div>
 
         <div class="div-category-item-wrapper6">
           <div class="div-item20">
@@ -1137,7 +1117,8 @@ if (isset($_SESSION['add_to_cart'])) {
                   </div>
                 </div>
               </div>
-              <button class="button-btn-xs" onclick="addToCart('<?php echo $title20; ?>', '<?php echo $price20; ?>', '<?php echo $image20; ?>');incrementCounter();">
+              <button class="button-btn-xs"
+                onclick="addToCart('<?php echo $title20; ?>', '<?php echo $price20; ?>', '<?php echo $image20; ?>');incrementCounter();">
                 <svg class="frame4" width="13" height="16" viewBox="0 0 13 16" fill="none"
                   xmlns="http://www.w3.org/2000/svg">
                   <path
@@ -1191,7 +1172,8 @@ if (isset($_SESSION['add_to_cart'])) {
                 </div>
               </div>
 
-              <button class="button-btn-xs" onclick="addToCart('<?php echo $title21; ?>', '<?php echo $price21; ?>', '<?php echo $image21; ?>');incrementCounter();">
+              <button class="button-btn-xs"
+                onclick="addToCart('<?php echo $title21; ?>', '<?php echo $price21; ?>', '<?php echo $image21; ?>');incrementCounter();">
                 <svg class="frame4" width="13" height="16" viewBox="0 0 13 16" fill="none"
                   xmlns="http://www.w3.org/2000/svg">
                   <path
@@ -1244,7 +1226,8 @@ if (isset($_SESSION['add_to_cart'])) {
                   </div>
                 </div>
               </div>
-              <button class="button-btn-xs"onclick="addToCart('<?php echo $title22; ?>', '<?php echo $price22; ?>', '<?php echo $image22; ?>');incrementCounter();">
+              <button class="button-btn-xs"
+                onclick="addToCart('<?php echo $title22; ?>', '<?php echo $price22; ?>', '<?php echo $image22; ?>');incrementCounter();">
                 <svg class="frame4" width="13" height="16" viewBox="0 0 13 16" fill="none"
                   xmlns="http://www.w3.org/2000/svg">
                   <path
@@ -1265,7 +1248,7 @@ if (isset($_SESSION['add_to_cart'])) {
       </div>
 
       <div class="div-1405" style="position:relative; left:450px; top:-30px;">
-        <div class="gourmet-fries">Gourmet Fries</div>
+        <div class="gourmet-fries" id="share">Share the Goodness</div>
 
         <div class="div-category-item-wrapper7">
           <div class="div-item23">
@@ -1295,7 +1278,8 @@ if (isset($_SESSION['add_to_cart'])) {
                 </div>
               </div>
 
-              <button class="button-btn-xs" onclick="addToCart('<?php echo $title23; ?>', '<?php echo $price23; ?>', '<?php echo $image23; ?>');incrementCounter();">
+              <button class="button-btn-xs"
+                onclick="addToCart('<?php echo $title23; ?>', '<?php echo $price23; ?>', '<?php echo $image23; ?>');incrementCounter();">
                 <svg class="frame4" width="13" height="16" viewBox="0 0 13 16" fill="none"
                   xmlns="http://www.w3.org/2000/svg">
                   <path
@@ -1336,7 +1320,8 @@ if (isset($_SESSION['add_to_cart'])) {
                   </div>
                 </div>
               </div>
-              <button class="button-btn-xs" onclick="addToCart('<?php echo $title24; ?>', '<?php echo $price24; ?>', '<?php echo $image24; ?>');incrementCounter();">
+              <button class="button-btn-xs"
+                onclick="addToCart('<?php echo $title24; ?>', '<?php echo $price24; ?>', '<?php echo $image24; ?>');incrementCounter();">
                 <svg class="frame4" width="13" height="16" viewBox="0 0 13 16" fill="none"
                   xmlns="http://www.w3.org/2000/svg">
                   <path
@@ -1387,7 +1372,8 @@ if (isset($_SESSION['add_to_cart'])) {
                 </div>
               </div>
 
-              <button class="button-btn-xs" onclick="addToCart('<?php echo $title25; ?>', '<?php echo $price25; ?>', '<?php echo $image25; ?>');incrementCounter();">
+              <button class="button-btn-xs"
+                onclick="addToCart('<?php echo $title25; ?>', '<?php echo $price25; ?>', '<?php echo $image25; ?>');incrementCounter();">
                 <svg class="frame4" width="13" height="16" viewBox="0 0 13 16" fill="none"
                   xmlns="http://www.w3.org/2000/svg">
                   <path

@@ -1,6 +1,11 @@
-<?php 
-	include('header.php'); 
-?>
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet" />
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
     <!-- fOOD sEARCH Section Starts Here -->
     <section class="food-search text-center">
         <div class="container">
