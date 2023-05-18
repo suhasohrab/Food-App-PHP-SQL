@@ -12,8 +12,6 @@
   <title>Burger</title>
 
   <script>
-
-
     // Function to increase the quantity of a product in the cart
     function increaseQuantity(index) {
       cart[index].quantity++;
@@ -27,9 +25,285 @@
 
 
 </head>
+<style>
+  @media only screen and (min-width: 924px) {
+    .www-burgeroclock-com-pk-by-html-to-design-free-version-11-05-2023-20-28-33-gmt-5 {
+      height: 4000px;
+      width: 2620px;
+      overflow-y: hidden;
+    }
 
-<div class="www-burgeroclock-com-pk-by-html-to-design-free-version-11-05-2023-20-28-33-gmt-5"
-  style="height:4000px; width:2620px ; overflow-y: hidden; ">
+    .modal {
+      display: none
+    }
+
+    .div-406857 {
+      position: relative;
+      left: 450px;
+      top: -30px;
+    }
+
+    .faqs {
+      position: relative;
+      left: 290px;
+      top: -20px;
+    }
+
+    .privacy-policy-span {
+      position: relative;
+      left: 320px;
+    }
+
+    .div-footer-container {
+      position: relative;
+      top: 2050px;
+      left: -10px;
+      width: 2600px
+    }
+
+    .div-405577 {
+      position: relative;
+      left: 450px;
+      top: -30px;
+    }
+
+    .div-401293 {
+      position: relative;
+      left: 450px;
+      top: -30px;
+    }
+
+    .div-1573 {
+      position: relative;
+      left: 450px;
+      top: -30px;
+    }
+
+    .div-402539 {
+      position: relative;
+      left: 450px;
+      top: -30px;
+    }
+
+    .div-1405 {
+      position: relative;
+      left: 450px;
+      top: -30px;
+    }
+
+    .div-about-content {
+      position: relative;
+      left: 450px;
+      top: -30px;
+    }
+
+    .vector {
+      position: relative;
+      left: 1px;
+      top: 1px
+    }
+
+    .cart {
+      position: relative;
+      left: 2300px;
+      top: -20px
+    }
+
+    .counter {
+      color: white;
+      position: relative;
+      top: -25px;
+      left: 30px;
+    }
+  }
+
+  @media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-device-pixel-ratio: 2) {
+    .carousel {
+      width: 1500px;
+      height: auto;
+    }
+    .modal {
+    background-color: white;
+    width: 100%;
+  }
+
+  .modal-content {
+    padding: 20px;
+  }
+
+  .close-container {
+    text-align: right;
+  }
+
+  .close {
+    cursor: pointer;
+  }
+    .modal {
+      position: fixed;
+      z-index: 9999;
+      /* Set a high z-index to make the modal appear on top of other elements */
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      /* Semi-transparent background */
+      display: none;
+    }
+
+    .modal-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      max-width: 400px;
+      width: 100%;
+    }
+
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    /* Other styles for cart items, buttons, etc. */
+
+
+    .div-category-item-wrapper {
+      position: relative;
+      left: -300px;
+      top: -350px;
+    }
+
+    .faqs {
+      position: relative;
+      top: -15px;
+      left: -100px;
+    }
+
+    .privacy-policy-span {
+      position: relative;
+      left: -250px;
+    }
+
+    .cart {
+      position: relative;
+      left: 1300px;
+      top: -20px
+    }
+
+    .www-burgeroclock-com-pk-by-html-to-design-free-version-11-05-2023-20-28-33-gmt-5 {
+      height: 2000px;
+      width: 2620px;
+      overflow-y: hidden;
+    }
+
+    .div-footer-container {
+      position: relative;
+      top: 2850px;
+      width: 1900px
+    }
+
+    .div-social-wrapper {
+      position: relative;
+      left: 800px;
+    }
+
+    .www-burgeroclock-com-pk-by-html-to-design-free-version-11-05-2023-20-28-33-gmt-5 {
+      height: 3000px;
+    }
+
+    .visa-mastercard-b-95-b-27-a-0173-c-07427991-png2 {
+      position: relative;
+      left: 780px;
+      top: 40px;
+    }
+
+    .div-406857 {
+      position: relative;
+      left: 200px;
+      top: -350px;
+    }
+
+    .div-1573 {
+      position: relative;
+      left: 200px;
+      top: -350px;
+    }
+
+    .div-about-content {
+      position: relative;
+      left: 220px;
+      top: -450px;
+    }
+
+    .div-402539 {
+      position: relative;
+      left: 200px;
+      top: -350px;
+    }
+
+    .div-1405 {
+      position: relative;
+      left: 200px;
+      top: -350px;
+    }
+
+    .div-405577 {
+      position: relative;
+      left: 200px;
+      top: -350px;
+    }
+
+    .div-401293 {
+      position: relative;
+      left: 200px;
+      top: -350px;
+    }
+
+    .summer-feast {
+      position: relative;
+      left: 200px;
+      top: -400px;
+    }
+
+    .ul-nav {
+      position: relative;
+      left: -300px;
+    }
+
+    .div-py-2 {
+      width: 700px;
+    }
+
+    .vector {
+      position: relative;
+      left: 40px;
+      top: 1px
+    }
+
+    .counter {
+      color: white;
+      position: relative;
+      top: -25px;
+      left: 30px;
+    }
+
+    .food-search {
+      font-size: 12px;
+      position: relative;
+      left: -300px;
+      top: -500px;
+    }
+
+  }
+</style>
+<div class="www-burgeroclock-com-pk-by-html-to-design-free-version-11-05-2023-20-28-33-gmt-5">
   <div class="div-topbar-wrapper" style="width:2620px; overflow-y:hidden;">
     <div class="div-alert-msg" style=" overflow-y:hidden;">
       <div class="free-delivery-above-2000-order" style="overflow-y:hidden; text-align:center;">
@@ -47,15 +321,14 @@
 
         <div class="_021111432532">021111432532</div>
       </div>
-      <div class="cart" style="position:relative; left:2300px; top:-20px">
+      <div class="cart">
 
-        <svg class="vector" style="position:relative; left:1px; top:1px" width="23" height="20" viewBox="0 0 23 20"
-          fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg class="vector" width="23" height="20" viewBox="0 0 23 20" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
             d="M3.705 0C4.14883 0 4.53091 0.316216 4.61581 0.753281L4.6737 1.23552H20.9101C21.6935 1.23552 22.3188 2.01737 22.0988 2.8054L20.0147 10.2201C19.8642 10.7529 19.3779 11.1197 18.826 11.1197H6.58795L6.94301 12.973H18.8337C19.347 12.973 19.76 13.3861 19.76 13.8996C19.76 14.4131 19.347 14.8262 18.8337 14.8262H6.14027C5.73117 14.8262 5.34909 14.5096 5.26419 14.0733L2.93853 1.85328H0.92625C0.414883 1.85328 0 1.43822 0 0.92664C0 0.415057 0.414883 0 0.92625 0H3.705ZM4.94 17.915C4.94 16.8919 5.76977 16.0618 6.7925 16.0618C7.81523 16.0618 8.645 16.8919 8.645 17.915C8.645 18.9382 7.81523 19.7683 6.7925 19.7683C5.76977 19.7683 4.94 18.9382 4.94 17.915ZM19.76 17.915C19.76 18.9382 18.9302 19.7683 17.9075 19.7683C16.8848 19.7683 16.055 18.9382 16.055 17.915C16.055 16.8919 16.8848 16.0618 17.9075 16.0618C18.9302 16.0618 19.76 16.8919 19.76 17.915Z"
             fill="#FFD400" />
         </svg>
-        <div class="counter" style="color:white; position:relative; top:-25px; left:30px;"><span id="counter">0</span>
+        <div class="counter"><span id="counter">0</span>
         </div>
       </div>
     </div>
@@ -140,13 +413,7 @@
           <a href="#classic-burgers">Classic Burgers</a>
         </div>
 
-        <div class="li-nav-item">
-          <div class="a-nav-link">
-            <div class="value-burgers2" style="position: relative; left: -10.47px;">
-              <a href="#share" >Share the Goodness</a>
-            </div>
-          </div>
-        </div>
+
 
 
       </div>
@@ -170,12 +437,21 @@
     font-weight: 500;
     line-height: 1.2;">Your Cart </h2>
     <div class="div-empty-cart-wrapper">
-
-
       <!-- Cart items will be dynamically added here -->
     </div>
   </div>
-
+  <!-- Cart Modal -->
+  <div id="cart-modal" class="modal">
+    <div class="modal-content">
+      <div class="div-empty-cart-wrapper">
+        <!-- Cart items will be dynamically added here -->
+      </div>
+      <div class="close-container">
+        <span class="close" onclick="closeCartModal()">&times;</span>
+      </div>
+    </div>
+  </div>
+  
   <div class="div-item-section" style="height:100px;width:2100px;">
     <div class="div-items-section-wrapper" style="height:100px;width:2100px;">
       <section class="food-search text-center" style="overflow-y:hidden; overflow-x:hidden;">
@@ -226,6 +502,25 @@
                 </div>
               </div>
               <script>
+
+                function openCartModal() {
+                  var cartModal = document.getElementById("cart-modal");
+                  var closeContainer = document.createElement("div");
+                  closeContainer.className = "close-container";
+                  var closeButton = document.createElement("span");
+                  closeButton.className = "close";
+                  closeButton.innerHTML = "&times;";
+                  closeButton.onclick = closeCartModal;
+                  closeContainer.appendChild(closeButton);
+                  cartModal.appendChild(closeContainer);
+                  cartModal.style.display = "block";
+                }
+
+                function closeCartModal() {
+                  var cartModal = document.getElementById("cart-modal");
+                  cartModal.style.display = "none";
+                }
+
                 function incrementCounter() {
                   counter++; // Increment the counter
 
@@ -251,49 +546,67 @@
                   // Add the product to the cart array
                   cart.push(product);
 
+                  openCartModal(); // Open the cart modal
+
                   // Update the cart section HTML
-                  updateCart();
+                  if (window.innerWidth > 600) {
+                    updateCart();
+                  }
                 }
+
 
                 // Function to update the cart section HTML
                 function updateCart() {
                   var cartSection = document.getElementById("cart-section");
+                  var cartModal = document.getElementById("cart-modal");
                   cartSection.innerHTML = "";
+                  cartModal.innerHTML = "";
 
-                  // Loop through the cart array and create HTML for each item
                   for (var i = 0; i < cart.length; i++) {
                     var item = cart[i];
                     var itemHTML = `
-        <img src="${item.image}" alt="${item.title}" style="width:200px;margin-top:60px;">
-        <div class="item-details">
-          <div class="item-title">${item.title}</div>
-          <div class="item-price">${item.price}</div>
-          <div class="item-quantity">
-            <button class="minus-button" onclick="decreaseQuantity(${i})">-</button>
-            <span>${item.quantity}</span>
-            <button class="plus-button" onclick="increaseQuantity(${i})">+</button>
-          </div>
+      <img src="${item.image}" alt="${item.title}" style="width:200px;margin-top:60px;">
+      <div class="item-details">
+        <div class="item-title">${item.title}</div>
+        <div class="item-price">${item.price}</div>
+        <div class="item-quantity">
+          <button class="minus-button" onclick="decreaseQuantity(${i})">-</button>
+          <span>${item.quantity}</span>
+          <button class="plus-button" onclick="increaseQuantity(${i})">+</button>
         </div>
-      `;
+      </div>
+      <button class="close-button" onclick="closeCartModal()">Close</button>
+
+    `;
                     cartSection.innerHTML += itemHTML;
+                    cartModal.innerHTML += itemHTML;
                   }
 
-                  // Add checkout and clear cart buttons
-                  var buttonsHTML = `
+                  if (cart.length === 0) {
+                    var emptyCartHTML = '<div class="empty-cart-message">Your cart is empty.</div>';
+                    cartModal.innerHTML += emptyCartHTML;
+                    cartModal.querySelector(".clear-cart-button").style.display = "none";
+                    cartModal.querySelector(".checkout-button").style.display = "none";
+                  } else {
+                    var buttonsHTML = `
       <button class="clear-cart-button" onclick="clearCart()">Clear Cart</button>
       <button class="checkout-button" onclick="goToCheckout()">Checkout</button>
     `;
-                  cartSection.innerHTML += buttonsHTML;
+                    cartModal.innerHTML += buttonsHTML;
+                    cartModal.querySelector(".clear-cart-button").style.display = "block";
+                    cartModal.querySelector(".checkout-button").style.display = "block";
+                  }
                 }
+
 
                 // Function to pass the cart data to the checkout page
                 function goToCheckout() {
-  // Convert the cart array to a JSON string
-  var cartData = JSON.stringify(cart);
+                  // Convert the cart array to a JSON string
+                  var cartData = JSON.stringify(cart);
 
-  // Set the cart data as a URL parameter
-  window.location.href = 'checkout.php?cart=' + encodeURIComponent(cartData);
-}
+                  // Set the cart data as a URL parameter
+                  window.location.href = 'checkout.php?cart=' + encodeURIComponent(cartData);
+                }
 
               </script>
 
@@ -420,7 +733,7 @@
         </div>
       </div>
 
-      <div class="div-406857" style="position:relative; left:450px; top:-30px;">
+      <div class="div-406857">
         <div class="wrap-tastic-offer">Value Burgers</div>
 
         <div class="div-item4">
@@ -475,7 +788,7 @@
         </div>
       </div>
 
-      <div class="div-405577" style="position:relative; left:450px; top:-30px;">
+      <div class="div-405577">
         <div class="grab-the-wraps" id="premium-burgers">Premium Burgers</div>
 
         <div class="div-category-item-wrapper2">
@@ -649,9 +962,7 @@
         </div>
       </div>
 
-
-
-      <div class="div-401293" style="position:relative; left:450px; top:-30px;">
+      <div class="div-401293">
         <div class="share-the-goodness-upto-30-off" id="stack-burgers">
           Stack Burgers
         </div>
@@ -763,7 +1074,7 @@
         </div>
       </div>
 
-      <div class="div-1573" style="position:relative; left:450px; top:-30px;">
+      <div class="div-1573">
         <div class="mighty-deals-upto-30-off" id="extreme-burgers">Extreme Burgers</div>
 
         <div class="div-category-item-wrapper5">
@@ -1078,7 +1389,7 @@
         </div>
       </div>
 
-      <div class="div-402539" style="position:relative; left:450px; top:-30px;">
+      <div class="div-402539">
         <div class="kiddy-meals" id="classic-burgers">Classic Burgers</div>
 
         <div class="div-category-item-wrapper6">
@@ -1247,7 +1558,7 @@
         </div>
       </div>
 
-      <div class="div-1405" style="position:relative; left:450px; top:-30px;">
+      <div class="div-1405">
         <div class="gourmet-fries" id="share">Share the Goodness</div>
 
         <div class="div-category-item-wrapper7">
@@ -1394,7 +1705,7 @@
 
 
 
-      <div class="div-about-content" style="position:relative; left:450px; top:-180px;">
+      <div class="div-about-content">
         <div class="contact-us">Contact Us:</div>
 
         <div class="_021-111-432-532">(021) 111 432 532</div>
@@ -1483,4 +1794,31 @@
     </div>
   </div>
 </div>
+</div>
+</div>
+
+<div class="div-footer-container">
+  <div class="div-social-wrapper">
+    <svg class="frame69" width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M31.849 15.7611C31.849 7.35375 25.0373 0.541992 16.63 0.541992C8.22268 0.541992 1.41092 7.35375 1.41092 15.7611C1.41092 23.3571 6.97631 29.6534 14.252 30.796V20.1605H10.3859V15.7611H14.252V12.408C14.252 8.59398 16.5226 6.48725 20.0003 6.48725C21.6658 6.48725 23.4074 6.78426 23.4074 6.78426V10.5277H21.4878C19.5977 10.5277 19.008 11.701 19.008 12.9044V15.7611H23.2288L22.5538 20.1605H19.008V30.796C26.2837 29.6534 31.849 23.3571 31.849 15.7611Z"
+        fill="white" />
+    </svg>
+
+    <svg class="frame70" width="30" height="32" viewBox="0 0 30 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M14.7114 8.70702C10.6328 8.70702 7.34292 11.8535 7.34292 15.7544C7.34292 19.6554 10.6328 22.8018 14.7114 22.8018C18.79 22.8018 22.0799 19.6554 22.0799 15.7544C22.0799 11.8535 18.79 8.70702 14.7114 8.70702ZM14.7114 20.3362C12.0757 20.3362 9.92092 18.2814 9.92092 15.7544C9.92092 13.2274 12.0693 11.1727 14.7114 11.1727C17.3535 11.1727 19.5019 13.2274 19.5019 15.7544C19.5019 18.2814 17.3471 20.3362 14.7114 20.3362ZM24.1 8.41874C24.1 9.33263 23.3304 10.0625 22.3813 10.0625C21.4258 10.0625 20.6626 9.3265 20.6626 8.41874C20.6626 7.51098 21.4322 6.77496 22.3813 6.77496C23.3304 6.77496 24.1 7.51098 24.1 8.41874ZM28.9802 10.0871C28.8712 7.88512 28.3453 5.93466 26.6587 4.32768C24.9785 2.7207 22.9392 2.21775 20.637 2.10735C18.2642 1.97854 11.1522 1.97854 8.77942 2.10735C6.48359 2.21162 4.44427 2.71456 2.75766 4.32155C1.07106 5.92853 0.55161 7.87899 0.436177 10.0809C0.301505 12.3503 0.301505 19.1524 0.436177 21.4218C0.545197 23.6237 1.07106 25.5742 2.75766 27.1812C4.44427 28.7882 6.47717 29.2911 8.77942 29.4015C11.1522 29.5303 18.2642 29.5303 20.637 29.4015C22.9392 29.2973 24.9785 28.7943 26.6587 27.1812C28.3389 25.5742 28.8648 23.6237 28.9802 21.4218C29.1149 19.1524 29.1149 12.3565 28.9802 10.0871ZM25.9148 23.8568C25.4146 25.059 24.4463 25.9851 23.1829 26.4697C21.2911 27.1873 16.802 27.0217 14.7114 27.0217C12.6208 27.0217 8.1253 27.1812 6.23989 26.4697C4.98296 25.9913 4.0146 25.0651 3.50798 23.8568C2.75766 22.0474 2.93081 17.754 2.93081 15.7544C2.93081 13.7549 2.76408 9.45531 3.50798 7.65205C4.00819 6.44988 4.97654 5.52372 6.23989 5.03917C8.13171 4.32155 12.6208 4.48715 14.7114 4.48715C16.802 4.48715 21.2975 4.32768 23.1829 5.03917C24.4398 5.51758 25.4082 6.44375 25.9148 7.65205C26.6651 9.46144 26.492 13.7549 26.492 15.7544C26.492 17.754 26.6651 22.0536 25.9148 23.8568Z"
+        fill="white" />
+    </svg>
+  </div>
+
+  <img class="visa-mastercard-b-95-b-27-a-0173-c-07427991-png2"
+    src="visa-mastercard-b-95-b-27-a-0173-c-07427991-png2.png" />
+  <div class="p-mb-0">
+    <div class="">|</div>
+    <div class="privacy-policy">
+      <span><span class="privacy-policy-span">Privacy Policy</span>
+    </div>
+    <div class="faqs">FAQS</div>
+  </div>
 </div>
