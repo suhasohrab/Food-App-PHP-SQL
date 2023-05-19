@@ -2,6 +2,8 @@
 
 <!DOCTYPE html>
 <html lang="en">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
 <head>
   <meta charset="UTF-8">
@@ -30,6 +32,19 @@
       width: 2620px;
       overflow-y: hidden;
     }
+    .remove-icon{
+      color:red
+    }
+    .about-us{
+      top:120px;
+    }
+    .what-makes-us-o-so-special-we-only-use-premium-meat-that-is-guaranteed-for-its-freshness-what-s-more-our-sauces-are-hand-crafted-with-secret-spices-and-herbs-that-leaves-you-drooling-for-more-if-its-your-first-trip-you-would-love-our-gourmet-burgers-crunchos-with-fried-mozzarella-cheese-patty-and-crisp-nachos-or-messy-meat-with-crispy-onion-rings-and-saucy-chili-for-the-sides-we-are-loved-for-our-gourmet-fries-potatoes-topped-with-a-variety-of-sauces-nacho-cheese-jalape-os-pepperoni-and-so-much-more{
+      
+    }
+    .welcome-to-the-home-of-delicious-gourmet-burgers-burger-o-clock-is-a-modern-restaurant-that-exists-to-delight-passionate-burger-lovers-walk-in-and-place-your-order-and-sit-back-and-relax-and-soak-in-our-attractive-ambiance-as-you-wait-for-your-order-to-be-prepared-all-burgers-are-cooked-to-order-and-we-pride-ourselves-on-serving-fresh-delicious-and-hygienic-burgers-that-tantalize-the-taste-buds-and-excite-your-senses-we-have-perfected-the-optimized-packaging-to-enhance-your-burger-experience-our-packaging-is-designed-to-be-easy-to-hold-and-carry-as-well-as-ensure-that-your-burgers-maintain-their-flavour-and-shape-for-those-who-do-not-prefer-a-dine-in-or-takeaway-experience-we-offer-our-patrons-the-option-to-have-their-order-delivered-at-their-home-or-office{
+      top:500px;
+
+    }
 
     .checkout-button {
       width: 400px;
@@ -41,7 +56,7 @@
       margin: 20px;
       color: white;
       border-radius: 10px;
-      font-weight: 500;
+      font-weight: 800;
       font-size: 1rem;
       font-family: Poppins, sans-serif !important;
     }
@@ -52,12 +67,12 @@
       border: none;
       position: relative;
       left: 5px;
-      top: 150px;
+      top: 155px;
       padding: 20px;
       margin: 20px;
       color: white;
       border-radius: 10px;
-      font-weight: 500;
+      font-weight: 800;
       font-size: 1rem;
       font-family: Poppins, sans-serif !important;
     }
@@ -208,6 +223,10 @@
       height: auto;
     }
 
+    .cart-image {
+      width: 200px;
+    }
+
     .div-category-item-wrapper {
       position: relative;
       left: -300px;
@@ -309,7 +328,7 @@
     .ul-nav {
       position: relative;
       left: -300px;
-      overflow-y:hidden;
+      overflow-y: hidden;
     }
 
     .div-py-2 {
@@ -321,21 +340,9 @@
       height: 100px;
     }
 
-    .div59 {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 500vh;
-      z-index: 9999;
-      background-color: white;
-      overflow-y: scroll;
-    }
-
     .div-empty-cart-wrapper {
       padding: 2em;
     }
-
 
     .vector {
       position: relative;
@@ -444,7 +451,7 @@
     </div>
   </div>
 
- 
+
   <div class="div-indolj-menu-list" style="position:relative; top: 100px;  background: #ffffff;
   height: 53.52px; width:2620px;
   position: relative;
@@ -510,14 +517,8 @@
 
 
   <div class="div-item-section" style="height:100px;width:2100px;">
-    <div class="div-items-section-wrapper" style="height:100px;width:2100px;">
-      <section class="food-search text-center" style="overflow-y:hidden; overflow-x:hidden;">
-        <div class="container" style="position:relative;top:-40px;left:450px;overflow-y:hidden; overflow-x:hidden;">
-          <form style="overflow-y:hidden" action="search.php" method="POST">
-            <input type="search" name="search" placeholder="Search for Food.." required>
-          </form>
-        </div>
-      </section>
+    <div class="div-items-section-wrapper" style="height:100px;width:2000px;">
+     
       <div class="div-406856" style="position:relative; left:450px; top:-30px;">
         <div class="summer-feast" id="mighty-deals">Mighty Deals</div>
 
@@ -589,6 +590,10 @@
                   // Update the cart section HTML
                   updateCart();
                 }
+                function removeItem(index) {
+                  cart.splice(index, 1); // Remove the item from the cart array
+                  updateCart(); // Update the cart section HTML
+                }
                 // Function to update the cart section HTML
                 function updateCart() {
                   var cartSection = document.getElementById("cart-section");
@@ -607,6 +612,9 @@
           <button class="minus-button" onclick="decreaseQuantity(${i})">-</button>
           <span>${item.quantity}</span>
           <button class="plus-button" onclick="increaseQuantity(${i})">+</button>
+          <button class="remove-button" onclick="removeItem(${i})"><i class="fa fa-trash remove-icon" aria-hidden="true"></i>
+</button>
+
         </div>
       </div>
     `;
@@ -623,17 +631,20 @@
                     cartSection.querySelector(".clear-cart-button").style.display = "none";
                     cartSection.querySelector(".checkout-button").style.display = "none";
                   } else {
-                    var totalHTML = `<div class="total">Total:${totalPrice}</div>`; // Display the total price
-                    cartSection.innerHTML += totalHTML;
+                    var formattedTotalPrice = totalPrice.toFixed(2); // Limit total price to two decimal places
+    var totalHTML = `<div class="total">Total: ${formattedTotalPrice}</div>`; // Display the total price
+    cartSection.innerHTML += totalHTML;
 
                     var buttonsHTML = `
       <button class="clear-cart-button" onclick="clearCart()">Clear Cart</button>
       <button class="checkout-button" onclick="goToCheckout()">Checkout</button>
+      
     `;
                     cartSection.innerHTML += buttonsHTML;
                     cartSection.querySelector(".clear-cart-button").style.display = "block";
                     cartSection.querySelector(".checkout-button").style.display = "block";
                   }
+
                 }
                 // Function to pass the cart data to the checkout page
                 function goToCheckout() {
@@ -1212,8 +1223,7 @@
             </div>
             </button>
 
-            <img class="_1637904654-1632163242-mighty-deals-02-min-jpg"
-              src="<?php echo $image14 ?>" />
+            <img class="_1637904654-1632163242-mighty-deals-02-min-jpg" src="<?php echo $image14 ?>" />
           </div>
 
           <div class="div-item16">
@@ -1264,8 +1274,7 @@
             </div>
             </button>
 
-            <img class="_1637904662-1632163270-mighty-deals-03-min-jpg"
-              src="<?php echo $image16 ?>" />
+            <img class="_1637904662-1632163270-mighty-deals-03-min-jpg" src="premium-messy.jpg" />
           </div>
 
           <div class="div-item17">
@@ -1747,85 +1756,67 @@
 
         <div class="_021-111-432-532">(021) 111 432 532</div>
 
-        <div class="our-locations">Our Locations</div>
 
-        <div
-          class="dha-branch-plot-no-10-c-at-intersection-of-khayaban-e-nishat-and-khayaban-e-ghazi-dha-phase-6-opposite-to-bonsai-restaurant">
-          * DHA Branch- Plot no. 10-C, at intersection of Khayaban-e-Nishat and
-          Khayaban-e-Ghazi, Dha phase 6. Opposite to BONSAI<br />Restaurant.
-        </div>
-
-        <div
-          class="smchs-branch-plot-104-a-ground-floor-s-m-c-h-s-capt-fareed-bukhari-shaheed-road-karachi-sindhi-muslim-cooperative-housing-society-karachi">
-          * SMCHS Branch- Plot # 104-A, Ground floor, S.M.C.H.S, capt Fareed
-          Bukhari Shaheed Road Karachi, Sindhi Muslim Cooperative<br />Housing
-          Society, Karachi
-        </div>
-
-        <div
-          class="gulshan-branch-shop-no-2-3-shazco-centre-plot-sb-3-gulshan-e-iqbal-block-4-near-disco-bakery-opposite-to-kfc-karachi">
-          * Gulshan Branch- Shop no. 2 &amp; 3, Shazco Centre, Plot SB-3,
-          Gulshan-e-Iqbal Block 4, near Disco Bakery, opposite to KFC Karachi
-        </div>
-
-        <div class="nazimabad-branch-shop-no-3-saima-paari-corner-block-l-near-5-star-chowrangi-karachi">
-          * Nazimabad Branch- Shop no. 3, SAIMA PAARI CORNER, Block L, Near 5
-          star Chowrangi, Karachi
-        </div>
-
-        <div class="fc-01-food-court-dolmen-mall-clifton-karachi">
-          * FC-01, Food Court Dolmen Mall Clifton, Karachi
-        </div>
-
-        <div class="k-011-food-court-dolmen-mall-tariq-road-karachi">
-          * K-011 Food Court Dolmen Mall Tariq Road, Karachi
-        </div>
-
-        <div class="shop-2-ground-floor-uni-tower-main-i-i-chundrigar-road-karachi">
-          * Shop # 2, Ground Floor Uni Tower Main I.I Chundrigar Road, Karachi
-        </div>
-
-        <div class="fc-15-food-court-lucky-one-mall-karachi">
-          * FC-15, Food Court Lucky One Mall, Karachi.
-        </div>
-
-        <div class="plot-20-midway-commercial-b-phase-1-bahria-town-karachi">
-          * Plot-20, Midway Commercial-B Phase 1, Bahria Town, Karachi
-        </div>
-
-        <div class="isra-residency-sb-16-scheme-36-block-3-a-gulistan-e-johar-karachi">
-          * ISRA Residency SB-16 Scheme -36, Block 3-A Gulistan-e-Johar Karachi.
-        </div>
 
         <div class="about-us">About Us</div>
 
         <div
           class="welcome-to-the-home-of-delicious-gourmet-burgers-burger-o-clock-is-a-modern-restaurant-that-exists-to-delight-passionate-burger-lovers-walk-in-and-place-your-order-and-sit-back-and-relax-and-soak-in-our-attractive-ambiance-as-you-wait-for-your-order-to-be-prepared-all-burgers-are-cooked-to-order-and-we-pride-ourselves-on-serving-fresh-delicious-and-hygienic-burgers-that-tantalize-the-taste-buds-and-excite-your-senses-we-have-perfected-the-optimized-packaging-to-enhance-your-burger-experience-our-packaging-is-designed-to-be-easy-to-hold-and-carry-as-well-as-ensure-that-your-burgers-maintain-their-flavour-and-shape-for-those-who-do-not-prefer-a-dine-in-or-takeaway-experience-we-offer-our-patrons-the-option-to-have-their-order-delivered-at-their-home-or-office">
-          Welcome to the home of delicious gourmet burgers. Burger O’Clock is a
-          modern restaurant that exists to delight passionate burger<br />lovers.
-          Walk in and place your order and sit back and relax and soak in our
-          attractive ambiance as you wait for your order to be<br />prepared.
-          All burgers are cooked to order and we pride ourselves on serving
-          fresh, delicious and hygienic burgers that tantalize the<br />taste
-          buds and excite your senses. We have perfected the optimized packaging
-          to enhance your burger experience. Our packaging<br />is designed to
-          be easy to hold and carry as well as ensure that your burgers maintain
-          their flavour and shape. For those who do not<br />prefer a dine in or
-          takeaway experience, we offer our patrons the option to have their
-          order delivered at their home or office.
+          WLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum. WLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum. WLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum. WLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.WLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum. WLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum. WLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum. WLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.WLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum. WLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum. WLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat.
         </div>
 
         <div
           class="what-makes-us-o-so-special-we-only-use-premium-meat-that-is-guaranteed-for-its-freshness-what-s-more-our-sauces-are-hand-crafted-with-secret-spices-and-herbs-that-leaves-you-drooling-for-more-if-its-your-first-trip-you-would-love-our-gourmet-burgers-crunchos-with-fried-mozzarella-cheese-patty-and-crisp-nachos-or-messy-meat-with-crispy-onion-rings-and-saucy-chili-for-the-sides-we-are-loved-for-our-gourmet-fries-potatoes-topped-with-a-variety-of-sauces-nacho-cheese-jalape-os-pepperoni-and-so-much-more">
-          What makes us O-So-Special? We only use premium meat that is
-          guaranteed for its freshness. What&#039;s more, our sauces are
-          hand-<br />crafted with secret spices and herbs that leaves you
-          drooling for more. If its your first trip you would love our gourmet
-          burgers<br />Crunchos with fried mozzarella cheese patty and crisp
-          nachos or Messy meat with crispy onion rings and saucy chili. For the
-          sides,<br />we are loved for our Gourmet fries - potatoes topped with
-          a variety of, sauces, nacho cheese, jalapeños, pepperoni and so
-          much<br />more!
+          WLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua.<br />WLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore
+          magna aliqua.<br />WLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore
+          magna aliqua.<br />WLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore
+          magna aliqua.<br />more!
         </div>
       </div>
     </div>
@@ -1841,7 +1832,7 @@
         d="M31.849 15.7611C31.849 7.35375 25.0373 0.541992 16.63 0.541992C8.22268 0.541992 1.41092 7.35375 1.41092 15.7611C1.41092 23.3571 6.97631 29.6534 14.252 30.796V20.1605H10.3859V15.7611H14.252V12.408C14.252 8.59398 16.5226 6.48725 20.0003 6.48725C21.6658 6.48725 23.4074 6.78426 23.4074 6.78426V10.5277H21.4878C19.5977 10.5277 19.008 11.701 19.008 12.9044V15.7611H23.2288L22.5538 20.1605H19.008V30.796C26.2837 29.6534 31.849 23.3571 31.849 15.7611Z"
         fill="white" />
     </svg>
-
+    &nbsp;
     <svg class="frame70" width="30" height="32" viewBox="0 0 30 32" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
         d="M14.7114 8.70702C10.6328 8.70702 7.34292 11.8535 7.34292 15.7544C7.34292 19.6554 10.6328 22.8018 14.7114 22.8018C18.79 22.8018 22.0799 19.6554 22.0799 15.7544C22.0799 11.8535 18.79 8.70702 14.7114 8.70702ZM14.7114 20.3362C12.0757 20.3362 9.92092 18.2814 9.92092 15.7544C9.92092 13.2274 12.0693 11.1727 14.7114 11.1727C17.3535 11.1727 19.5019 13.2274 19.5019 15.7544C19.5019 18.2814 17.3471 20.3362 14.7114 20.3362ZM24.1 8.41874C24.1 9.33263 23.3304 10.0625 22.3813 10.0625C21.4258 10.0625 20.6626 9.3265 20.6626 8.41874C20.6626 7.51098 21.4322 6.77496 22.3813 6.77496C23.3304 6.77496 24.1 7.51098 24.1 8.41874ZM28.9802 10.0871C28.8712 7.88512 28.3453 5.93466 26.6587 4.32768C24.9785 2.7207 22.9392 2.21775 20.637 2.10735C18.2642 1.97854 11.1522 1.97854 8.77942 2.10735C6.48359 2.21162 4.44427 2.71456 2.75766 4.32155C1.07106 5.92853 0.55161 7.87899 0.436177 10.0809C0.301505 12.3503 0.301505 19.1524 0.436177 21.4218C0.545197 23.6237 1.07106 25.5742 2.75766 27.1812C4.44427 28.7882 6.47717 29.2911 8.77942 29.4015C11.1522 29.5303 18.2642 29.5303 20.637 29.4015C22.9392 29.2973 24.9785 28.7943 26.6587 27.1812C28.3389 25.5742 28.8648 23.6237 28.9802 21.4218C29.1149 19.1524 29.1149 12.3565 28.9802 10.0871ZM25.9148 23.8568C25.4146 25.059 24.4463 25.9851 23.1829 26.4697C21.2911 27.1873 16.802 27.0217 14.7114 27.0217C12.6208 27.0217 8.1253 27.1812 6.23989 26.4697C4.98296 25.9913 4.0146 25.0651 3.50798 23.8568C2.75766 22.0474 2.93081 17.754 2.93081 15.7544C2.93081 13.7549 2.76408 9.45531 3.50798 7.65205C4.00819 6.44988 4.97654 5.52372 6.23989 5.03917C8.13171 4.32155 12.6208 4.48715 14.7114 4.48715C16.802 4.48715 21.2975 4.32768 23.1829 5.03917C24.4398 5.51758 25.4082 6.44375 25.9148 7.65205C26.6651 9.46144 26.492 13.7549 26.492 15.7544C26.492 17.754 26.6651 22.0536 25.9148 23.8568Z"
@@ -1849,13 +1840,9 @@
     </svg>
   </div>
 
-  <img class="visa-mastercard-b-95-b-27-a-0173-c-07427991-png2"
-    src="visa.webp" />
+  <img class="visa-mastercard-b-95-b-27-a-0173-c-07427991-png2" src="visa.webp" />
   <div class="p-mb-0">
     <div class="">|</div>
-    <div class="privacy-policy">
-      <span><span class="privacy-policy-span">Privacy Policy</span>
-    </div>
-    <div class="faqs">FAQS</div>
+
   </div>
 </div>
