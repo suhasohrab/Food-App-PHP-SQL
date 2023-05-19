@@ -1,8 +1,12 @@
+<?php include('config.php'); ?>
+
 <!DOCTYPE html>
 <html>
 
 <head>
-    <title>Document</title>
+    <title>Search</title>
+    <link rel="stylesheet" href="./style.css">
+
 </head>
 <style>
     * {
@@ -10,6 +14,11 @@
         padding: 0 0;
         font-family: Poppins, sans-serif !important;
         overflow-x: hidden;
+    }
+    .div59 {
+      top: -40px;
+      left: 2100px;
+      height: 5000px
     }
 
     input {
@@ -29,7 +38,75 @@
 
     .img-responsive {
         width: 100%;
-        height:300px;
+    }
+    .div-m-0 {
+      top: 1250px;
+      height: 100px;
+
+
+    }
+    .checkout-button {
+      width: 400px;
+      background-color: #FCC817;
+      border: none;
+      position: relative;
+      left: 5px;
+      padding: 20px;
+      margin: 20px;
+      color: white;
+      border-radius: 10px;
+      font-weight: 500;
+      font-size: 1rem;
+      font-family: Poppins, sans-serif !important;
+    }
+
+    .clear-cart-button {
+      width: 400px;
+      background-color: red;
+      border: none;
+      position: relative;
+      left: 5px;
+      top: 150px;
+      padding: 20px;
+      margin: 20px;
+      color: white;
+      border-radius: 10px;
+      font-weight: 500;
+      font-size: 1rem;
+      font-family: Poppins, sans-serif !important;
+    }
+
+    .cart-image {
+      width: 100px;
+      margin-top: 100px
+    }
+
+    .total {
+      position: relative;
+      left: 300px;
+      top: -10px;
+      font-weight: 500;
+      color: #000;
+      font-size: 1rem;
+      font-family: Poppins, sans-serif !important;
+    }
+
+    .item-title {
+      font-weight: 500;
+      color: #000;
+      font-size: 1rem;
+      position:relative;
+      left:300px;
+      font-family: Poppins, sans-serif !important;
+    }
+
+    .item-price {
+      font-weight: 500;
+      color: #000;
+      position:relative;
+      left:300px;
+      font-size: 1rem;
+      font-family: Poppins, sans-serif !important;
     }
 
     .img-curve {
@@ -500,7 +577,7 @@
     .food-menu-box {
         width: 600px;
         position: relative;
-        height: 200px;
+        height: 150px;
         left: 200px;
         margin: 1%;
         padding: 2%;
@@ -984,36 +1061,132 @@ if (isset($_SESSION['add_to_cart'])) {
 }
 ?>
 
-<!-- fOOD MEnu Section Starts Here -->
-<section class="food-menu">
-    <div class="container">
-        <h2 class="text-center">Menu</h2>
-        <div class="heading-border"></div>
+<body>
 
-        <?php
-        if (isset($_REQUEST['search'])) {
-            $sql = "SELECT * FROM food WHERE title LIKE '%$search%' OR description LIKE '%$search%'";
-        } else {
-            $sql = "SELECT * FROM food  ORDER BY id DESC LIMIT 10";
+    <div class="div59" id="cart-section">
+        <h2 style="font-family: Poppins,sans-serif!important;    margin-top: 0;
+    margin-top:1em; margin-left:1em; position:relative; left:2000px;
+    font-weight: 500;
+    line-height: 1.2;">Your Cart </h2>
+        <div class="div-empty-cart-wrapper">
+            <!-- Cart items will be dynamically added here -->
+        </div>
+    </div>
+    <script>
+        function incrementCounter() {
+            counter++; // Increment the counter
+            // Update the counter display
+            var counterElement = document.getElementById('counter');
+            if (counterElement) {
+                counterElement.textContent = counter;
+            }
         }
-        $res = mysqli_query($conn, $sql);
-        if ($res == true) {
-            $count = mysqli_num_rows($res);
-            if ($count > 0) {
-                while ($rows = mysqli_fetch_assoc($res)) {
-                    $id = $rows['id'];
-                    $title = $rows['title'];
-                    $price = $rows['price'];
-                    $image = $rows['image'];
-                    $description = $rows['description'];
-                    ?>
-                    <div class="food-menu-box" style="overflow-y:hidden; height:400px">
-                        <form action="cart_core.php" method="POST">
+
+        // Array to store cart items
+        var cart = [];
+        function clearCart() {
+            cart = [];
+            updateCart();
+        }
+
+        // Function to add a product to the cart
+        function addToCart(title, price, image) {
+            // Create a product object
+            var product = {
+                title: title,
+                price: price,
+                image: image,
+                quantity: 1
+            };
+
+            // Add the product to the cart array
+            cart.push(product);
+            // Update the cart section HTML
+            updateCart();
+        }
+        // Function to update the cart section HTML
+        function updateCart() {
+            var cartSection = document.getElementById("cart-section");
+            cartSection.innerHTML = "";
+
+            var totalPrice = 0; // Initialize the total price variable
+
+            for (var i = 0; i < cart.length; i++) {
+                var item = cart[i];
+                var itemHTML = `
+      <img src="${item.image}" class="cart-image" alt="${item.title}">
+      <div class="item-details">
+        <div class="item-title" style="color:black">${item.title}</div>
+        <div class="item-price"  style="color:black">${item.price}</div>
+        <div class="item-quantity">
+          <button class="minus-button" onclick="decreaseQuantity(${i})">-</button>
+          <span>${item.quantity}</span>
+          <button class="plus-button" onclick="increaseQuantity(${i})">+</button>
+        </div>
+      </div>
+    `;
+                cartSection.innerHTML += itemHTML;
+
+                // Calculate the price for the current item based on quantity
+                var itemPrice = item.price * item.quantity;
+                totalPrice += itemPrice; // Add the item price to the total price
+            }
+
+            if (cart.length === 0) {
+                var emptyCartHTML = '<div class="empty-cart-message">Your cart is empty.</div>';
+                cartSection.innerHTML += emptyCartHTML;
+                cartSection.querySelector(".clear-cart-button").style.display = "none";
+                cartSection.querySelector(".checkout-button").style.display = "none";
+            } else {
+                var totalHTML = `<div class="total">Total:${totalPrice}</div>`; // Display the total price
+                cartSection.innerHTML += totalHTML;
+
+                var buttonsHTML = `
+      <button class="clear-cart-button" onclick="clearCart()">Clear Cart</button>
+      <button class="checkout-button" onclick="goToCheckout()">Checkout</button>
+    `;
+                cartSection.innerHTML += buttonsHTML;
+                cartSection.querySelector(".clear-cart-button").style.display = "block";
+                cartSection.querySelector(".checkout-button").style.display = "block";
+            }
+        }
+        // Function to pass the cart data to the checkout page
+        function goToCheckout() {
+            // Convert the cart array to a JSON string
+            var cartData = JSON.stringify(cart);
+
+            // Set the cart data as a URL parameter
+            window.location.href = 'checkout.php?cart=' + encodeURIComponent(cartData);
+        }
+    </script>
+    <!-- fOOD MEnu Section Starts Here -->
+    <section class="food-menu">
+        <div class="container">
+            <h2 class="text-center" style="position:relative; left:-200px">Search Results</h2>
+
+            <?php
+            if (isset($_REQUEST['search'])) {
+                $sql = "SELECT * FROM food WHERE title LIKE '%$search%' OR description LIKE '%$search%'";
+            } else {
+                $sql = "SELECT * FROM food  ORDER BY id DESC LIMIT 10";
+            }
+            $res = mysqli_query($conn, $sql);
+            if ($res == true) {
+                $count = mysqli_num_rows($res);
+                if ($count > 0) {
+                    while ($rows = mysqli_fetch_assoc($res)) {
+                        $id = $rows['id'];
+                        $title = $rows['title'];
+                        $price = $rows['price'];
+                        $image = $rows['image'];
+                        $description = $rows['description'];
+                        ?>
+                        <div class="food-menu-box" style="overflow-y:hidden">
                             <div class="food-menu-img">
                                 <?php
                                 if ($image != "") {
                                     ?>
-                                    <img style="  height:300px;" src="<?php echo SITEURL; ?>images/food/<?php echo $image; ?>" alt=""
+                                    <img src="<?php echo SITEURL; ?>images/food/<?php echo $image; ?>" alt=""
                                         class="img-responsive img-curve" />
                                     <?php
                                 } else {
@@ -1024,11 +1197,11 @@ if (isset($_SESSION['add_to_cart'])) {
                             </div>
 
                             <div class="food-menu-desc">
-                                <h4>
+                                <h4 style="position:relative; top:10px; color:black">
                                     <?php echo $title; ?>
                                 </h4>
                                 <p class="food-price"
-                                    style="background-color: black;color:white; width:80px; position:relative; top:-5px">$<?php echo $price; ?></p>
+                                    style="background-color: black;color:white; width:80px; position:relative; top:5px">$<?php echo $price; ?></p>
                                 <p class="food-detail">
                                     <?php echo $description; ?>
                                 </p>
@@ -1042,24 +1215,19 @@ if (isset($_SESSION['add_to_cart'])) {
                                 <input type="hidden" name="url"
                                     value="<?php echo (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>" />
                                 <!--<a href="<?php echo SITEURL; ?>order.php?food_id=<?php echo $id; ?>" class="btn btn-primary">Order Now</a>-->
-                                <input type="submit" name="add_to_cart" class="btn btn-primary" value="Add to Cart" />
+                                <input type="submit" onclick="addToCart('<?php echo $title; ?>', '<?php echo $price; ?>', '<?php echo $image; ?>');" name="add_to_cart" class="btn btn-primary" value="Add to Cart" />
                             </div>
-                        </form>
-                    </div>
-                    <?php
+                        </div>
+                        <?php
+                    }
+                } else {
+                    echo "<div class='error'>Food not avilable.</div>";
                 }
-            } else {
-                echo "<div class='error'>Food not avilable.</div>";
             }
-        }
-        ?>
+            ?>
 
-        <div class="clearfix"></div>
+            <div class="clearfix"></div>
+        </div>
 
-
-
-    </div>
-
-</section>
-<!-- fOOD Menu Section Ends Here -->
-
+    </section>
+</body>

@@ -3,7 +3,7 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"]) && $_POST["submit"] === "order-now") {
     $title = $_POST["title"];
     $price = $_POST["price"];
-    $image = $_POST["image"];
+    $totalPrice = $_POST["total"]; // Add this line to retrieve the total price
 	$order_date = date("Y-m-d h:i:sa");
     // Retrieve and validate the user details from the form fields
     $quantity = isset($_POST["quantity"]) ? $_POST["quantity"] : "";
@@ -34,14 +34,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"]) && $_POST["s
     }
 
     // Prepare and bind the SQL statement
-    $stmt = $conn->prepare("INSERT INTO food_order (title, price, customer_name, customer_contact, customer_email, customer_address, instructions, landmark, payment, altno) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO food_order (title, price, total, qty, customer_name, customer_contact, customer_email, customer_address, instructions, landmark, payment, altno) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     if (!$stmt) {
-        die("Error: " . $conn->error);
+        die("Error preparing statement: " . $conn->error);
     }
-    $stmt->bind_param("ssssssssss", $title, $price, $name, $contact, $email, $address, $instructions, $landmark, $payment, $altno);
-    
+    $stmt->bind_param("ssdsssssssss", $title, $price, $totalPrice, $quantity, $name, $contact, $email, $address, $instructions, $landmark, $payment, $altno); // Add $totalPrice to the bind_param function
     // Execute the statement
     $stmt->execute();
+    
 
     // Close the statement and connection
     $stmt->close();

@@ -22,8 +22,6 @@
       updateCart();
     }
   </script>
-
-
 </head>
 <style>
   @media only screen and (min-width: 924px) {
@@ -32,6 +30,79 @@
       width: 2620px;
       overflow-y: hidden;
     }
+
+    .checkout-button {
+      width: 400px;
+      background-color: #FCC817;
+      border: none;
+      position: relative;
+      left: 5px;
+      padding: 20px;
+      margin: 20px;
+      color: white;
+      border-radius: 10px;
+      font-weight: 500;
+      font-size: 1rem;
+      font-family: Poppins, sans-serif !important;
+    }
+
+    .clear-cart-button {
+      width: 400px;
+      background-color: red;
+      border: none;
+      position: relative;
+      left: 5px;
+      top: 150px;
+      padding: 20px;
+      margin: 20px;
+      color: white;
+      border-radius: 10px;
+      font-weight: 500;
+      font-size: 1rem;
+      font-family: Poppins, sans-serif !important;
+    }
+
+    .cart-image {
+      width: 100px;
+      margin-top: 60px
+    }
+
+    .total {
+      position: relative;
+      left: 300px;
+      top: -10px;
+      font-weight: 500;
+      color: #000;
+      font-size: 1rem;
+      font-family: Poppins, sans-serif !important;
+    }
+
+    .item-title {
+      position: relative;
+      left: 110px;
+      top: -50px;
+      font-weight: 500;
+      color: #000;
+      font-size: 1rem;
+      font-family: Poppins, sans-serif !important;
+    }
+
+    .item-price {
+      position: relative;
+      left: 340px;
+      top: -70px;
+      font-weight: 500;
+      color: #000;
+      font-size: 1rem;
+      font-family: Poppins, sans-serif !important;
+    }
+
+    .item-quantity {
+      position: relative;
+      left: 330px;
+      top: -50px
+    }
+
 
     .modal {
       display: none
@@ -115,6 +186,20 @@
       top: -25px;
       left: 30px;
     }
+
+    .div-m-0 {
+      top: 1250px;
+      height: 100px;
+
+
+    }
+
+    .div59 {
+      top: -40px;
+      left: 2100px;
+      height: 5000px
+    }
+
   }
 
   @media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-device-pixel-ratio: 2) {
@@ -122,57 +207,6 @@
       width: 1500px;
       height: auto;
     }
-    .modal {
-    background-color: white;
-    width: 100%;
-  }
-
-  .modal-content {
-    padding: 20px;
-  }
-
-  .close-container {
-    text-align: right;
-  }
-
-  .close {
-    cursor: pointer;
-  }
-    .modal {
-      position: fixed;
-      z-index: 9999;
-      /* Set a high z-index to make the modal appear on top of other elements */
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      /* Semi-transparent background */
-      display: none;
-    }
-
-    .modal-content {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 5px;
-      max-width: 400px;
-      width: 100%;
-    }
-
-    .close {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      font-size: 20px;
-      cursor: pointer;
-    }
-
-    /* Other styles for cart items, buttons, etc. */
-
 
     .div-category-item-wrapper {
       position: relative;
@@ -275,16 +309,49 @@
     .ul-nav {
       position: relative;
       left: -300px;
+      overflow-y:hidden;
     }
 
     .div-py-2 {
       width: 700px;
     }
 
+    .div-m-0 {
+      top: 1250px;
+      height: 100px;
+    }
+
+    .div59 {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 500vh;
+      z-index: 9999;
+      background-color: white;
+      overflow-y: scroll;
+    }
+
+    .div-empty-cart-wrapper {
+      padding: 2em;
+    }
+
+
     .vector {
       position: relative;
       left: 40px;
       top: 1px
+    }
+
+    .hide-cart {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .show-cart {
+      opacity: 1;
+      pointer-events: auto;
     }
 
     .counter {
@@ -377,9 +444,7 @@
     </div>
   </div>
 
-  <img class="visa-mastercard-b-95-b-27-a-0173-c-07427991-png"
-    src="visa-mastercard-b-95-b-27-a-0173-c-07427991-png.png" />
-
+ 
   <div class="div-indolj-menu-list" style="position:relative; top: 100px;  background: #ffffff;
   height: 53.52px; width:2620px;
   position: relative;
@@ -389,15 +454,15 @@
   overflow: hidden;">
       <div class="ul-nav">
         <div class="mighty-deals-upto-30-off2" style="position: relative;
-  left: 400.47px;">
+  left: 400.47px;overflow-y:hidden">
           <a href="#mighty-deals">Mighty Deals upto 30% off</a>
         </div>
 
-        <div class="gourmet-fries2">
+        <div class="gourmet-fries2" style="overflow-y:hidden">
           <a href="#gourmet-fries">Value Burgers</a>
         </div>
 
-        <div class="premium-burgers2">
+        <div class="premium-burgers2" style="overflow-y:hidden">
           <a href="#premium-burgers">Premium Burgers</a>
         </div>
 
@@ -430,8 +495,8 @@
 
 </div>
 
-<div class="div-m-0" style="top:1250px;height:100px;">
-  <div class="div59" id="cart-section" style="top: -40px; left: 2100px; height:5000px;">
+<div class="div-m-0">
+  <div class="div59" id="cart-section">
     <h2 style="font-family: Poppins,sans-serif!important;    margin-top: 0;
     margin-top:1em; margin-left:1em;
     font-weight: 500;
@@ -440,25 +505,16 @@
       <!-- Cart items will be dynamically added here -->
     </div>
   </div>
-  <!-- Cart Modal -->
-  <div id="cart-modal" class="modal">
-    <div class="modal-content">
-      <div class="div-empty-cart-wrapper">
-        <!-- Cart items will be dynamically added here -->
-      </div>
-      <div class="close-container">
-        <span class="close" onclick="closeCartModal()">&times;</span>
-      </div>
-    </div>
-  </div>
-  
+
+
+
+
   <div class="div-item-section" style="height:100px;width:2100px;">
     <div class="div-items-section-wrapper" style="height:100px;width:2100px;">
       <section class="food-search text-center" style="overflow-y:hidden; overflow-x:hidden;">
         <div class="container" style="position:relative;top:-40px;left:450px;overflow-y:hidden; overflow-x:hidden;">
-          <form style="overflow-y:hidden" action="<?php echo SITEURL; ?>food-search.php" method="POST">
+          <form style="overflow-y:hidden" action="search.php" method="POST">
             <input type="search" name="search" placeholder="Search for Food.." required>
-
           </form>
         </div>
       </section>
@@ -502,36 +558,21 @@
                 </div>
               </div>
               <script>
-
-                function openCartModal() {
-                  var cartModal = document.getElementById("cart-modal");
-                  var closeContainer = document.createElement("div");
-                  closeContainer.className = "close-container";
-                  var closeButton = document.createElement("span");
-                  closeButton.className = "close";
-                  closeButton.innerHTML = "&times;";
-                  closeButton.onclick = closeCartModal;
-                  closeContainer.appendChild(closeButton);
-                  cartModal.appendChild(closeContainer);
-                  cartModal.style.display = "block";
-                }
-
-                function closeCartModal() {
-                  var cartModal = document.getElementById("cart-modal");
-                  cartModal.style.display = "none";
-                }
-
                 function incrementCounter() {
                   counter++; // Increment the counter
-
                   // Update the counter display
                   var counterElement = document.getElementById('counter');
                   if (counterElement) {
                     counterElement.textContent = counter;
                   }
                 }
+
                 // Array to store cart items
                 var cart = [];
+                function clearCart() {
+                  cart = [];
+                  updateCart();
+                }
 
                 // Function to add a product to the cart
                 function addToCart(title, price, image) {
@@ -545,27 +586,20 @@
 
                   // Add the product to the cart array
                   cart.push(product);
-
-                  openCartModal(); // Open the cart modal
-
                   // Update the cart section HTML
-                  if (window.innerWidth > 600) {
-                    updateCart();
-                  }
+                  updateCart();
                 }
-
-
                 // Function to update the cart section HTML
                 function updateCart() {
                   var cartSection = document.getElementById("cart-section");
-                  var cartModal = document.getElementById("cart-modal");
                   cartSection.innerHTML = "";
-                  cartModal.innerHTML = "";
+
+                  var totalPrice = 0; // Initialize the total price variable
 
                   for (var i = 0; i < cart.length; i++) {
                     var item = cart[i];
                     var itemHTML = `
-      <img src="${item.image}" alt="${item.title}" style="width:200px;margin-top:60px;">
+      <img src="${item.image}" class="cart-image" alt="${item.title}">
       <div class="item-details">
         <div class="item-title">${item.title}</div>
         <div class="item-price">${item.price}</div>
@@ -575,30 +609,32 @@
           <button class="plus-button" onclick="increaseQuantity(${i})">+</button>
         </div>
       </div>
-      <button class="close-button" onclick="closeCartModal()">Close</button>
-
     `;
                     cartSection.innerHTML += itemHTML;
-                    cartModal.innerHTML += itemHTML;
+
+                    // Calculate the price for the current item based on quantity
+                    var itemPrice = item.price * item.quantity;
+                    totalPrice += itemPrice; // Add the item price to the total price
                   }
 
                   if (cart.length === 0) {
                     var emptyCartHTML = '<div class="empty-cart-message">Your cart is empty.</div>';
-                    cartModal.innerHTML += emptyCartHTML;
-                    cartModal.querySelector(".clear-cart-button").style.display = "none";
-                    cartModal.querySelector(".checkout-button").style.display = "none";
+                    cartSection.innerHTML += emptyCartHTML;
+                    cartSection.querySelector(".clear-cart-button").style.display = "none";
+                    cartSection.querySelector(".checkout-button").style.display = "none";
                   } else {
+                    var totalHTML = `<div class="total">Total:${totalPrice}</div>`; // Display the total price
+                    cartSection.innerHTML += totalHTML;
+
                     var buttonsHTML = `
       <button class="clear-cart-button" onclick="clearCart()">Clear Cart</button>
       <button class="checkout-button" onclick="goToCheckout()">Checkout</button>
     `;
-                    cartModal.innerHTML += buttonsHTML;
-                    cartModal.querySelector(".clear-cart-button").style.display = "block";
-                    cartModal.querySelector(".checkout-button").style.display = "block";
+                    cartSection.innerHTML += buttonsHTML;
+                    cartSection.querySelector(".clear-cart-button").style.display = "block";
+                    cartSection.querySelector(".checkout-button").style.display = "block";
                   }
                 }
-
-
                 // Function to pass the cart data to the checkout page
                 function goToCheckout() {
                   // Convert the cart array to a JSON string
@@ -607,7 +643,6 @@
                   // Set the cart data as a URL parameter
                   window.location.href = 'checkout.php?cart=' + encodeURIComponent(cartData);
                 }
-
               </script>
 
               <button class="button-btn-xs"
@@ -1141,6 +1176,7 @@
                       $row14 = mysqli_fetch_assoc($res14);
                       $title14 = $row14['title'];
                       $price14 = $row14['price'];
+                      $image14 = $row15['image'];
                       $description14 = $row14['description'];
                     }
                     ?>
@@ -1177,7 +1213,7 @@
             </button>
 
             <img class="_1637904654-1632163242-mighty-deals-02-min-jpg"
-              src="_1637904654-1632163242-mighty-deals-02-min-jpg.png" />
+              src="<?php echo $image14 ?>" />
           </div>
 
           <div class="div-item16">
@@ -1192,6 +1228,7 @@
                       $row16 = mysqli_fetch_assoc($res16);
                       $title16 = $row16['title'];
                       $price16 = $row16['price'];
+                      $image16 = $row16['image'];
                       $description16 = $row16['description'];
                     }
                     ?>
@@ -1228,7 +1265,7 @@
             </button>
 
             <img class="_1637904662-1632163270-mighty-deals-03-min-jpg"
-              src="_1637904662-1632163270-mighty-deals-03-min-jpg.png" />
+              src="<?php echo $image16 ?>" />
           </div>
 
           <div class="div-item17">
@@ -1813,7 +1850,7 @@
   </div>
 
   <img class="visa-mastercard-b-95-b-27-a-0173-c-07427991-png2"
-    src="visa-mastercard-b-95-b-27-a-0173-c-07427991-png2.png" />
+    src="visa.webp" />
   <div class="p-mb-0">
     <div class="">|</div>
     <div class="privacy-policy">
