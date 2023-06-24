@@ -3,7 +3,7 @@ Burger-O-Clock Clone
 A web application developed using PHP and SQL to provide an online platform for selling and managing burger orders. This README file provides an overview of the application, its features, and instructions for setting up and running the application on your local machine.
 
 Features
-FBurger-O-Clock clone offers the following features:
+Burger-O-Clock clone offers the following features:
 
 1. Burger Listing
 
